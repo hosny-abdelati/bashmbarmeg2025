@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكليات التكنولوجية - البشمبرمج</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="shortcut icon" href="1.jpg" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: linear-gradient(to bottom, #2c3e50, #3498db);
+            color: white;
+            padding-top: 60px;
+        }
+
+        /* الناف بار */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #2f3030;
+            z-index: 1000;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .site-name {
+            color: #ecf0f1;
+            font-size: 22px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .navbar-links {
+            display: flex;
+        }
+
+        .navbar-links ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar-links ul li {
+            margin-left: 20px;
+        }
+
+        .navbar-links ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-links ul li a:hover {
+            color: #ffa600;
+        }
+
+        .dots {
+            font-size: 30px;
+            cursor: pointer;
+            color: #ecf0f1;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 20px;
+            }
+
+            .dots {
+                display: block;
+            }
+
+            .navbar-links {
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background-color: #2c3e50;
+                padding: 20px 0;
+                text-align: center;
+            }
+
+            .navbar-links.active {
+                display: block;
+            }
+
+            .navbar-links ul {
+                flex-direction: column;
+                padding: 0;
+            }
+
+            .navbar-links ul li {
+                margin-bottom: 15px;
+            }
+
+            .navbar-links ul li a {
+                font-size: 18px;
+            }
+        }
+
+        /* قسم المعلومات العامة */
+        .info-section {
+            padding: 2em 1em;
+            text-align: right;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .info-section h2 {
+            font-size: 2em;
+            margin-bottom: 1em;
+            color: #f39c12;
+        }
+
+        .info-section p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        .info-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-section ul li {
+            margin-bottom: 10px;
+            font-size: 1em;
+            color: #ccc;
+        }
+
+        .info-section a {
+            color: #f39c12;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .info-section a:hover {
+            color: #d35400;
+        }
+
+        .info-section .highlight {
+            font-weight: bold;
+            color: #f39c12;
+        }
+
+        .info-section .note {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1em;
+            border-radius: 10px;
+            margin-top: 1em;
+        }
+
+        .info-section .note p {
+            margin: 0;
+        }
+
+        /* قسم عرض الكليات التكنولوجية */
+        .tech-section {
+            padding: 2em 1em;
+            text-align: center;
+        }
+
+        .tech-section h1 {
+            font-size: 2.5em;
+            margin-bottom: 1em;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2em;
+            padding: 1em;
+        }
+
+        .tech-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1em;
+            text-align: right;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .tech-card h3 {
+            color: #ffffff;
+            margin-bottom: 0.5em;
+        }
+
+        .tech-card p {
+            color: #ccc;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        /* الفوتر */
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 30px 0;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+
+        .footer-column-left,
+        .footer-column-center,
+        .footer-column-right {
+            flex: 1;
+            padding: 15px;
+            min-width: 250px;
+        }
+
+        .footer-column-left h2,
+        .footer-column-center h3,
+        .footer-column-right h3 {
+            color: #e5e4e2;
+        }
+
+        .footer-column-left p {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .footer-sections {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-section h3 {
+            color: #00bcd4;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            text-decoration: none;
+            color: #f6f7f3;
+            font-size: 1rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: #d4aa00;
+        }
+
+        .social-icon {
+            margin: 10px;
+            color: #ffffff;
+            font-size: 1.5rem;
+        }
+
+        .social-icon:hover {
+            color: #dcca09;
+        }
+
+        .footer-img {
+            width: 50px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- الناف بار -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="1.jpg" alt="Logo" class="logo-image">
+            <span class="site-name">البشمبرمج </span>
+        </div>
+        <div class="dots" id="dots">&#x2630;</div>
+        <div class="navbar-links" id="navbarLinks">
+            <ul>
+                <li><a href="الريئسة.html">الرئيسية</a></li>
+                <li><a href="كليات الصناعة.html">الكليات المتاحة</a></li>
+                <li><a href="صناعة تخصص.html">التخصصات</a></li>
+                <li><a href="https://www.tansik.egypt.gov.eg/application/certificates/fani/defaultfani.aspx">التنسيق</a></li>
+                <li><a href="من انا.html">اتصل بنا</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- قسم المعلومات العامة -->
+    <section class="info-section">
+        <h2>معلومات عامة عن الجامعات التكنولوجية</h2>
+        <p>
+            الجامعات التكنولوجية هي جامعات حكومية معتمدة وتدخل في التنسيق العام. تضم هذه الجامعات كليتين رئيسيتين
+        </p>
+        <ul>
+            <li><span class="highlight">تكنولوجيا الصناعة والطاقة</span> تقبل دبلومات فنية صناعية (3 أو 5 سنوات) وثانوي
+                عام علمي رياضة. بعض الأقسام تقبل علمي علوم.</li>
+            <li><span class="highlight">تكنولوجيا العلوم الصحية:</span> تقبل علمي علوم فقط.</li>
+        </ul>
+        <p>
+            يوجد في مصر 10 جامعات تكنولوجية
+        </p>
+        <ul>
+            <li>جامعة القاهرة الجديدة التكنولوجية.</li>
+            <li>جامعة الدلتا التكنولوجية.</li>
+            <li>جامعة بني سويف التكنولوجية.</li>
+            <li>جامعة أسيوط الجديدة التكنولوجية.</li>
+            <li>جامعة برج العرب التكنولوجية.</li>
+            <li>جامعة طيبة الجديدة التكنولوجية.</li>
+            <li>جامعة السادس من أكتوبر التكنولوجية.</li>
+            <li>جامعة سمنود التكنولوجية.</li>
+            <li>جامعة شرق بورسعيد التكنولوجية.</li>
+            <li>جامعة مصر التكنولوجية الدولية (القاهرة، الفيوم، أسيوط).</li>
+        </ul>
+        <p>
+            <span class="highlight">مدة الدراسة</span> 4 سنوات (سنتين  + سنتين بكالوريوس).<br>
+            <span class="highlight">المصاريف</span><br>
+            - السنة الأولى: 15,000 جنيه.<br>
+            - السنة الثانية: 15,000 جنيه.<br>
+            - السنة الثالثة: 20,000 جنيه.<br>
+            - السنة الرابعة: 20,000 جنيه.<br>
+            يمكن تقسيط المصاريف على دفعتين أو أكثر حسب نظام الجامعة.<br>
+            <span class="highlight">لغير القادرين</span> يمكن تقديم طلب لتحديد المصاريف المناسبة.
+        </p>
+        <p>
+            <span class="highlight">المسمى الوظيفي</span> خريج الجامعة يحصل على بكالوريوس التكنولوجيا المهني في مجال
+            التخصص. الفرق بين الفني والمهندس والتكنولوجي هو أن الفني يتمتع بمهارات عملية، والمهندس يتعلم النظريات، بينما
+            التكنولوجي يجمع بين المهارات العملية والنظريات.
+        </p>
+        <p>
+            <span class="highlight">الأقسام المتاحة</span> تختلف الأقسام في كلية تكنولوجيا الصناعة والطاقة من جامعة
+            لأخرى. يمكنك معرفة الأقسام المتاحة في كل جامعة من خلال الرابط التالي<br>
+            <a href="https://mohesr.gov.eg/ar-eg/Pages/technological-universities.aspx" target="_blank">الموقع الرسمي
+                لوزارة التعليم العالي</a>.
+        </p>
+
+       <!-- ملحوظة صغيرة -->
+<div class="note">
+    <p>
+        <span class="highlight"><strong>IT</strong></span> قسم تكنولوجيا المعلومات يُعرف باسم .
+    </p>
+</div>
+    </section>
+
+    <!-- قسم عرض الكليات التكنولوجية -->
+    <section class="tech-section">
+        <h1>الكليات التكنولوجية</h1>
+        <div class="tech-grid">
+            <!-- جامعة القاهرة الجديدة التكنولوجية -->
+            <div class="tech-card">
+                <h3>جامعة القاهرة الجديدة التكنولوجية</h3>
+                <p>
+                    تقدم الجامعة 6 برامج دراسية حديثة<br>
+                    - الأوتوترونكس<br>
+                    - الميكاترونيكس<br>
+                    - الطاقة الجديدة والمتجددة<br>
+                    - تكنولوجيا المعلومات والاتصالات<br>
+                    - نقل ومعالجة البترول<br>
+                    - الأطراف الصناعية والأجهزة التقويمية
+                </p>
+            </div>
+
+            <!-- جامعة بني سويف التكنولوجية -->
+            <div class="tech-card">
+                <h3>جامعة بني سويف التكنولوجية</h3>
+                <p>
+                    تطرح الجامعة 5 برامج دراسية<br>
+                    - تكنولوجيا الميكاترونكس<br>
+                    - تكنولوجيا المعلومات<br>
+                    - تكنولوجيا الأوتوترونكس<br>
+                    - تكنولوجيا الطاقة الجديدة والمتجددة<br>
+                    - تكنولوجيا الأطراف الصناعية والأجهزة التقويمية
+                </p>
+            </div>
+
+            <!-- جامعة الدلتا التكنولوجية -->
+            <div class="tech-card">
+                <h3>جامعة الدلتا التكنولوجية</h3>
+                <p>
+                    تقدم الجامعة 6 برامج تكنولوجية<br>
+                    - تكنولوجيا الميكاترونكس<br>
+                    - تكنولوجيا الأوتوترونكس<br>
+                    - تكنولوجيا المعلومات<br>
+                    - تكنولوجيا الطاقة الجديدة والمتجددة<br>
+                    - تكنولوجيا الأطراف الصناعية والأجهزة التقويمية<br>
+                    - تكنولوجيا التبريد والتكييف
+                </p>
+            </div>
+
+            <!-- جامعة سمنود التكنولوجية -->
+            <div class="tech-card">
+                <h3>جامعة سمنود التكنولوجية</h3>
+                <p>
+                    تقدم الجامعة 3 برامج دراسية<br>
+                    - تكنولوجيا تشغيل وصيانة ماكينات الغزل والنسيج<br>
+                    - تكنولوجيا التصنيع الغذائي<br>
+                    - تكنولوجيا الملابس الجاهزة
+                </p>
+            </div>
+
+            <!-- جامعة طيبة التكنولوجية -->
+            <div class="tech-card">
+                <h3>جامعة طيبة التكنولوجية</h3>
+                <p>
+                    تطرح الجامعة 4 برامج دراسية<br>
+                    - تكنولوجيا التصنيع الغذائي<br>
+                    - تكنولوجيا الصناعات الخشبية<br>
+                    - تكنولوجيا الخدمات الفندقية<br>
+                    - تكنولوجيا خدمات السياحة والسفر
+                </p>
+            </div>
+
+            <!-- جامعة برج العرب التكنولوجية -->
+            <div class="tech-card">
+                <h3>جامعة برج العرب التكنولوجية</h3>
+                <p>
+                    تشمل الكليات<br>
+                    - كلية تكنولوجيا الصناعة والطاقة<br>
+                    - كلية تكنولوجيا العلوم الصحية<br>
+                    تقدم برامج مثل: تكنولوجيا المعلومات ، تكنولوجيا السكك الحديدية، الجرارات الزراعية، الغزل والنسيج،
+                    الصناعات الغذائية، الصناعات الدوائية، وتركيبات الأسنان.
+                </p>
+            </div>
+
+            <!-- جامعة شرق بورسعيد التكنولوجية -->
+            <div class="tech-card">
+                <h3>جامعة شرق بورسعيد التكنولوجية</h3>
+                <p>
+                    تقدم الجامعة 5 برامج دراسية<br>
+                    - تكنولوجيا الصناعات الخشبية<br>
+                    - تكنولوجيا الصناعات الغذائية<br>
+                    - تكنولوجيا الخدمات الفندقية<br>
+                    - تكنولوجيا النقل البحري والموانئ<br>
+                    - تكنولوجيا الخدمات السياحية والسفر
+                </p>
+            </div>
+
+            <!-- جامعة أسيوط التكنولوجية -->
+            <div class="tech-card">
+                <h3>جامعة أسيوط التكنولوجية</h3>
+                <p>
+                    تقدم الجامعة 6 برامج دراسية<br>
+                    - تكنولوجيا الصناعات الدوائية<br>
+                    - تكنولوجيا قطاع الأسنان<br>
+                    - تكنولوجيا الأجهزة الكهربائية والإلكترونية<br>
+                    - تكنولوجيا المعلومات (IT)<br>
+                    - تكنولوجيا شبكات نقل وتوزيع الكهرباء<br>
+                    - تكنولوجيا التصنيع الغذائي
+                </p>
+            </div>
+
+            <!-- جامعة 6 أكتوبر التكنولوجية -->
+            <div class="tech-card">
+                <h3>جامعة 6 أكتوبر التكنولوجية</h3>
+                <p>
+                    تقدم الجامعة برامج دراسية مثل<br>
+                    - تكنولوجيا تشغيل وصيانة ماكينات الغزل والنسيج<br>
+                    - تكنولوجيا المعلومات<br>
+                    - تكنولوجيا التصنيع الغذائي<br>
+                    - تكنولوجيا السكك الحديدية<br>
+                    - تكنولوجيا الصناعات الدوائية<br>
+                    - تكنولوجيا تركيبات الأسنان
+                </p>
+            </div>
+
+            <!-- جامعة مصر التكنولوجية الدولية -->
+            <div class="tech-card">
+                <h3>جامعة مصر التكنولوجية الدولية</h3>
+                <p>
+                    تضم الجامعة 3 كليات في القاهرة والفيوم وأسيوط، وتقدم برامج مثل:<br>
+                    - تكنولوجيا أنظمة التحكم الصناعية<br>
+                    - تكنولوجيا الذكاء الاصطناعي<br>
+                    - الأمن السيبراني<br>
+                    - علوم البيانات<br>
+                    - تكنولوجيا الكهرباء<br>
+                    - تكنولوجيا الميكانيكا
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <h2>مجال العمل لبعض الأقسام التكنولوجية</h2>
+        <div class="note">
+            <h3>خريج تكنولوجيا الميكاترونكس</h3>
+            <ul>
+                <li>يساهم مهندسو هذا التخصص في تصنيع آلات تتكون من عدة أجزاء: النظام الميكانيكي، والاستشعار والتشغيل، وأنظمة التحكم والبرامج. مثل: الروبوت الصناعي.</li>
+                <li>الصناعات الأخرى المشهورة مثل: أفران الميكروويف والسيارات والهواتف الذكية، وآلات التصوير بالرنين المغناطيسي والأشعة السينية.</li>
+            </ul>
+    
+            <h3>خريج تكنولوجيا المعلومات (IT)</h3>
+            <ul>
+                <li>مطور برمجيات، مدير شبكات، محلل أمن معلومات، مهندس أنظمة، مستشار تكنولوجيا المعلومات، مدير مشروع تكنولوجيا المعلومات، مهندس دعم فني، ومدير أمن المعلومات.</li>
+                <li>اختصاصي ومسئول قاعدة البيانات. مصمم ومطور الصفحات الإلكترونية. اختبار وتجربة البرامج والأنظمة الحاسوبية.</li>
+                <li>الإشراف على أعمال الحاسب الآلي ومراكز المعلومات. الإشراف على أعمال الصيانة لكافة الأجهزة الإلكترونية للشركة وإعداد نسخ احتياطية في حال وقوع أي مشكلة في المساحات التخزينية.</li>
+                <li>اكتشاف أي ثغرات في أنظمة الشركة والعمل على إصلاحها في أقرب وقت ممكن. الإشراف على أداء النظام ومراقبة الشبكات واكتشاف أي محاولات الاختراق وحماية البيانات.</li>
+            </ul>
+    
+            <h3>خريج تكنولوجيا الأوتوترونكس</h3>
+            <ul>
+                <li>شركات التصميم الهندسي: العمل في مجال تصميم أنواع معينة من المحركات والأجهزة والمعدات.</li>
+                <li>المصانع: العمل في مجالات مثل الجودة والصيانة والتشغيل لدى بعض أنواع المصانع.</li>
+                <li>شركات المقاولات: العمل في التصميم والإشراف في مجالات معينة.</li>
+                <li>المدارس: العمل في مجالات الإشراف الهندسي وإدارة أقسام الصيانة إضافة إلى تدريس مواد الرياضيات والفيزياء.</li>
+                <li>سيارات الهايبرد: العمل لدى الشركات المعنية بصيانة وتصنيع سيارات الهايبرد واستيراد وتصنيع قطعها.</li>
+                <li>التدفئة والتكييف: العمل في مجالات التدفئة والتكييف في قطاع الصناعة أو الصيانة أو التجارة العامة.</li>
+            </ul>
+    
+            <h3>خريج تكنولوجيا الطاقة المتجددة</h3>
+            <ul>
+                <li>تصميم وتنفيذ مشاريع لاستخدام الطاقة الشمسية والرياح والمائية.</li>
+                <li>وظائف مثل مهندس تصميم أنظمة طاقة متجددة، مدير مشروع، مستشار تقنيات الطاقة المتجددة، باحث، ومحلل اقتصادي.</li>
+                <li>مجال تحلية المياه. شركات البترول ومصانع الحديد والبتروكيماويات وغيرها من الصناعات.</li>
+            </ul>
+    
+            <h3>خريج تكنولوجيا السكك الحديدية</h3>
+            <ul>
+                <li>تصميم وتخطيط السكك الحديدية.</li>
+                <li>إدارة المشاريع الهندسية، الصيانة والإصلاح، ضمان السلامة.</li>
+                <li>المشاركة في البحث والتطوير لتحسين شبكات النقل بالسكك الحديدية.</li>
+            </ul>
+    
+            <h3>خريج تكنولوجيا الملابس الجاهزة</h3>
+            <ul>
+                <li>مصانع الملابس الجاهزة كمراقب جودة إنتاج.</li>
+                <li>مصانع الملابس الجاهزة والمؤسسات الصناعية كمدير إنتاج.</li>
+                <li>الأسواق المحلية والقومية كمنسق للموضة.</li>
+                <li>مستشار فني لتصميم وإنتاج وتسويق الملابس.</li>
+            </ul>
+    
+            <h3>خريج تكنولوجيا صيانة ماكينات الغزل والنسيج</h3>
+            <ul>
+                <li>تشغيل وإيقاف الماكينات، ووصل أطراف الخيوط يدويًا.</li>
+                <li>إجراء عمليات التنظيف والتزييت والتشحيم للماكينة.</li>
+                <li>إجراء عمليات الصيانة والضبط للأجهزة المختلفة.</li>
+            </ul>
+    
+            <h3>خريج تكنولوجيا الجرارات والمعدات الزراعية</h3>
+            <ul>
+                <li>صيانة الجرارات والمعدات الزراعية.</li>
+                <li>إدارة مشاريع الري والصرف الزراعي.</li>
+                <li>العمل في شركات استصلاح الأراضي.</li>
+            </ul>
+    
+            <h3>خريج تكنولوجيا التبريد والتكييف</h3>
+            <ul>
+                <li>تصميم أنظمة التبريد والتكييف.</li>
+                <li>صيانة أنظمة التبريد المركزية.</li>
+                <li>العمل في شركات إنتاج المعدات.</li>
+            </ul>
+    
+            <h3>خريج تكنولوجيا الصناعات الخشبية</h3>
+            <ul>
+                <li>تصميم الأثاث والديكورات الخشبية.</li>
+                <li>إدارة مشاريع البناء والتشييد.</li>
+                <li>العمل في صناعة الطيران والفضاء.</li>
+            </ul>
+    
+            <h3>خريج تكنولوجيا شبكات نقل وتوزيع الكهرباء</h3>
+            <ul>
+                <li>العمل في مجال مراقبة أنظمة تحويل ونقل وتوزيع الطاقة الكهربائية.</li>
+                <li>العمل في أنظمة توليد ونقل الطاقة الكهربائية المتجددة (طاقة الرياح والطاقة الشمسية).</li>
+                <li>العمل في القطاع التدريبي المهني والأكاديمي.</li>
+            </ul>
+    
+            <h3>خريج تكنولوجيا الأجهزة الكهربائية والإلكترونية</h3>
+            <ul>
+                <li>الأقسام التقنية في شركات الاتصالات وشركات نقل المعلومات.</li>
+                <li>تصنيع المعدات الكهربائية.</li>
+                <li>شركات البرمجة وتصميم أجهزة التحكم.</li>
+                <li>العمل في مجال صيانة الأجهزة الكهربائية والإلكترونية.</li>
+            </ul>
+    
+            <h3>خريج تكنولوجيا أنظمة التحكم الصناعية</h3>
+            <ul>
+                <li>تصميم أنظمة الميكاترونيك التي تستخدم في مجال الطب والجراحات الدقيقة.</li>
+                <li>تصميم الروبوتات والميكنة التي تستخدم في مجال الزراعة والصناعات الغذائية والتسلية والترفيه.</li>
+                <li>مراقبة الشبكات الخدمية والتحكم بها (الكهرباء، المرور، المياه، والصرف الصحي).</li>
+            </ul>
+    
+            <h3>خريج تكنولوجيا الذكاء الاصطناعي</h3>
+            <ul>
+                <li>تطوير وبرمجة وتدريب الشبكات المعقدة للخوارزميات التي تشكل الذكاء الاصطناعي.</li>
+                <li>يتطلب هذا الدور خبرة مشتركة في تطوير البرمجيات والبرمجة وعلوم البيانات وهندسة البيانات.</li>
+            </ul>
+    
+            <h3>خريج تكنولوجيا الأمن السيبراني</h3>
+            <ul>
+                <li>حماية وتأمين الأجهزة والبرامج والبيانات الإلكترونية من الهجمات الرقمية.</li>
+                <li>توفير الحماية ضد الهجمات الضارة التي تهدف إلى الوصول إلى البيانات الحساسة أو تغييرها أو حذفها.</li>
+            </ul>
+    
+            <h3>خريج تكنولوجيا علوم البيانات</h3>
+            <ul>
+                <li>اختصاصي ومسئول قاعدة البيانات.</li>
+                <li>تصميم وتنفيذ تقنيات التنقيب عن البيانات.</li>
+                <li>إنشاء أنظمة تُحدِّد ضبط الجودة باستخدام تقنيات التعلُّم الآلي.</li>
+            </ul>
+    
+            <h3>خريج تكنولوجيا نقل ومعالجة البترول</h3>
+            <ul>
+                <li>تصميم وتشغيل المعدات والأنظمة المستخدمة في نقل البترول ومعالجته.</li>
+                <li>مراقبة العمليات وتحسينها لزيادة الكفاءة والسلامة.</li>
+                <li>البحث والتطوير لتقنيات جديدة لزيادة كفاءة العمليات وتقليل التأثيرات البيئية.</li>
+            </ul>
+    
+            <h3>خريج تكنولوجيا الكهرباء</h3>
+            <ul>
+                <li>العمل في جميع الصناعات الإنتاجية، والمستشفيات، ومعاهد البحوث، وشركات النفط والغاز.</li>
+                <li>العمل في الصناعات الغذائية، البتروكيماوية، ومصانع السيارات.</li>
+                <li>العمل في هيئة السكك الحديدية.</li>
+            </ul>
+    
+            <h3>خريج تكنولوجيا الميكانيكا</h3>
+            <ul>
+                <li>العمل في المصانع: الصيانة، التصميم، والإشراف على خطوط الإنتاج وأنظمة التحكم.</li>
+                <li>العمل في مجال السيارات: الصيانة، فحص المركبات، وإدارة المبيعات.</li>
+                <li>تصميم وصيانة الأنظمة الهيدروليكية مثل الشاحنات والجرافات.</li>
+            </ul>
+    
+            <h3>خريج تكنولوجيا الخدمات الفندقية</h3>
+            <ul>
+                <li>العمل في إدارة الفنادق أو المنتجعات السياحية أو المطاعم.</li>
+                <li>دراسة كافة المواد الدراسية باللغة الإنجليزية لزيادة فرص العمل في كبرى الفنادق والمنتجعات.</li>
+            </ul>
+    
+            <h3>خريج تكنولوجيا النقل البحري والموانئ</h3>
+            <ul>
+                <li>العمل بالتوكيلات الملاحية بجميع أنواعها في شركات الملاحة وتوكيلات الخطوط المنتظمة.</li>
+                <li>العمل في الموانئ: تشغيل الأرصفة، شحن وتفريغ البضائع، ومسئولي الأرصفة.</li>
+                <li>تعزيز السلامة البحرية وحماية البيئة البحرية وتطوير الملاحة البحرية.</li>
+            </ul>
+    
+            <h3>خريج تكنولوجيا خدمات السياحة والسفر</h3>
+            <ul>
+                <li>إعداد البرامج السياحية الداخلية والخارجية.</li>
+                <li>حجز وتسعير تذاكر الطيران.</li>
+                <li>إعداد بحوث الأسواق السياحية بفاعلية.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column-left">
+                <div class="footer-image">
+                    <img src="1.jpg" alt="Image" class="footer-img">
+                </div>
+                <h2>البشمبرمج للدبلومات الفنية</h2>
+                <p>هدفنا هو مساعدة طلاب الدبلومات الفنية في التخصصات المختلفة مثل: صناعة، تجارة، زراعة، سياحة وفنادق.
+                </p>
+            </div>
+
+            <div class="footer-column-right">
+                <div class="footer-sections">
+                    <div class="footer-section">
+                        <h3>التخصصات</h3>
+                        <ul>
+                            <li><a href="الريئسة.html">صناعة</a></li>
+                            <li><a href="كليات التجارة .html">تجارة</a></li>
+                            <li><a href="كليات ومعاهد زراعة.html">زراعة</a></li>
+                            <li><a href="كليات سياحة .html">سياحة وفنادق</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3>الكليات والمعاهد</h3>
+                        <ul>
+                            <li><a href="كليات الصناعة.html">كليات</a></li>
+                            <li><a href="معاهد ص.html">معاهد خاصة</a></li>
+                            <li><a href="معاهد ص.html">معاهد حكومية</a></li>
+                            <li><a href="معادلة هندسة.html">معادلات</a></li>
+                            <li><a href="https://www.tansik.egypt.gov.eg/application/certificates/fani/defaultfani.aspx">التنسيق</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-column-center">
+                <h3>للتواصل والاستفسار</h3>
+<!--                 <a href="https://www.facebook.com/profile.php?id=100027634399245" target="_blank"
+                    class="social-icon facebook">
+                    <i class="fab fa-facebook-f"></i> -->
+                </a>
+                <!-- <a href="https://www.instagram.com/hosny_abdelati/" target="_blank" class="social-icon instagram">
+                    <i class="fab fa-instagram"></i> -->
+                </a>
+                <a href="https://t.me/ElBashMprogrammer" target="_blank" class="social-icon telegram">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+                <a href="https://whatsapp.com/channel/0029VabyFpsI7BeJIF4OSp0m" target="_blank"
+                    class="social-icon whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="mailto:hosnyandelattiy@gmail.com" class="social-icon email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+        <p>جميع الحقوق محفوظة &copy; 2025 - موقع البشمبرمج</p>
+    </footer>
+
+    <script>
+        const dots = document.getElementById('dots');
+        const navbarLinks = document.getElementById('navbarLinks');
+
+        dots.addEventListener('click', () => {
+            navbarLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>

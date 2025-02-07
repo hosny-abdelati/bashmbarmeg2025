@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كليات ومعاهد دبلوم سياحة وفنادق - البشمبرمج</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="shortcut icon" href="1.jpg" type="image/x-icon">
+    <style>
+        /* الأسلوب العام */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f8f9fa; /* لون خلفية فاتح */
+            color: #333;
+            padding-top: 60px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #343a40; /* لون داكن */
+            z-index: 1000;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .site-name {
+            color: #fff;
+            font-size: 22px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .navbar-links {
+            display: flex;
+        }
+
+        .navbar-links ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+        }
+
+        .navbar-links ul li {
+            margin-left: 20px;
+        }
+
+        .navbar-links ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-links ul li a:hover {
+            color: #ffc107; /* لون ذهبي */
+        }
+
+        .dots {
+            font-size: 30px;
+            cursor: pointer;
+            color: #fff;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 20px;
+            }
+
+            .dots {
+                display: block;
+            }
+
+            .navbar-links {
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background-color: #495057; /* لون داكن */
+                padding: 20px 0;
+                text-align: center;
+            }
+
+            .navbar-links.active {
+                display: block;
+            }
+
+            .navbar-links ul {
+                flex-direction: column;
+            }
+
+            .navbar-links ul li {
+                margin-bottom: 15px;
+            }
+
+            .navbar-links ul li a {
+                font-size: 18px;
+            }
+        }
+
+        /* قسم الكليات والمعاهد */
+        .institutes-section {
+            padding: 2em 1em;
+            text-align: right;
+        }
+
+        .institutes-section h1 {
+            font-size: 2.5em;
+            margin-bottom: 1em;
+            color: #343a40; /* لون داكن */
+        }
+
+        .institutes-section h2 {
+            font-size: 1.8em;
+            color: #343a40; /* لون داكن */
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .institutes-section p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .institutes-section ul {
+            list-style: none;
+            margin-right: 20px;
+            color: #555;
+            padding: 0;
+        }
+
+        .institutes-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .institutes-section .details-button {
+            background-color: #343a40; /* لون داكن */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .institutes-section .details-button:hover {
+            background-color: #495057; /* لون داكن فاتح */
+        }
+
+        .divider {
+            border-bottom: 2px solid #ddd;
+            margin: 2em 0;
+        }
+
+        /* الفوتر */
+        .footer {
+            background-color: #343a40; /* لون داكن */
+            color: #fff;
+            padding: 30px 0;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+
+        .footer-column-left,
+        .footer-column-center,
+        .footer-column-right {
+            flex: 1;
+            padding: 15px;
+            min-width: 250px;
+        }
+
+        .footer-column-left h2,
+        .footer-column-center h3,
+        .footer-column-right h3 {
+            color: #fff;
+        }
+
+        .footer-column-left p {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .footer-sections {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-section h3 {
+            color: #ffc107; /* لون ذهبي */
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: #ffc107; /* لون ذهبي */
+        }
+
+        .social-icon {
+            margin: 10px;
+            color: #fff;
+            font-size: 1.5rem;
+        }
+
+        .social-icon:hover {
+            color: #ffc107; /* لون ذهبي */
+        }
+
+        .footer-img {
+            width: 50px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- الناف بار -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="1.jpg" alt="Logo" class="logo-image">
+            <span class="site-name">البشمبرمج </span>
+        </div>
+        <div class="dots" id="dots">&#x2630;</div>
+        <div class="navbar-links" id="navbarLinks">
+            <ul>
+                <li><a href="الريئسة.html">الرئيسية</a></li>
+                <li><a href="كليات سياحة .html">المعاهد المتاحة</a></li>
+                <li><a href="الريئسة.html">التخصصات</a></li>
+                <li><a href="https://www.tansik.egypt.gov.eg/application/certificates/fani/defaultfani.aspx">التنسيق</a></li>
+                <li><a href="من انا.html">اتصل بنا</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- قسم الكليات والمعاهد -->
+    <section class="institutes-section">
+        <h1>كليات ومعاهد دبلوم سياحة وفنادق</h1>
+
+        <!-- الكليات الحكومية -->
+        <h2>الكليات الحكومية</h2>
+        <div>
+            <h3>كلية تعليم تبادلي سياحة وفنادق</h3>
+            <p>توجد في محافظة الإسكندرية، حلوان، والفيوم (شعبة مطاعم فقط).</p>
+            <a href="سياحة.html" class="details-button">عرض التفاصيل</a>
+        </div>
+        <div class="divider"></div>
+
+        <div>
+            <h3>الكليات التكنولوجيا الجديدة</h3>
+            <p>توجد في مدينة سمنود (الغربية) ومدينة طيبة (الأقصر) وشرق بورسعيد. الشعبة: الخدمات الفندقية والسياحية.</p>
+            <a href="تكنولوجيا.html" class="details-button">عرض التفاصيل</a>
+        </div>
+        <div class="divider"></div>
+
+        <!-- المعاهد الحكومية -->
+        <h2>المعاهد الحكومية</h2>
+        <div>
+            <h3>معهد فني فنادق</h3>
+            <p>توجد في الإسكندرية، بورسعيد، القاهرة (المطرية)، وقنا.</p>
+            <a href="فني سياحة.html" class="details-button">عرض التفاصيل</a>
+        </div>
+        <div class="divider"></div>
+
+        <!-- المعاهد الخاصة -->
+        <h2>المعاهد الخاصة</h2>
+        <div>
+            <h3>معاهد سياحة وفنادق (4 سنوات)</h3>
+            <p>تمنح بكالوريوس سياحة وفنادق. توجد في</p>
+            <ul>
+                <li>الإسكندرية (السيوف، أبو قير، إيجوث، كينج مريوط)</li>
+                <li>الهرم (مريوطية)</li>
+                <li>الجيزة</li>
+                <li>6 أكتوبر</li>
+                <li>الغردقة</li>
+                <li>دمياط الجديدة</li>
+                <li>القاهرة (مدينة نصر، مدينة بدر، مصر الجديدة)</li>
+                <li>الأقصر (إيجوث)</li>
+                <li>العريش</li>
+            </ul>
+            <a href="معهد سياحة عالي.html" class="details-button">عرض التفاصيل</a>
+        </div>
+        <div class="divider"></div>
+
+        <div>
+            <h3>الجامعة العمالية</h3>
+            <p>تمنح دبلوم فوق المتوسط (سنتين). توجد في مدينة نصر فقط. لا يوجد تكملة بعدها.</p>
+            <a href="جامعة عمالية.html" class="details-button">عرض التفاصيل</a>
+        </div>
+        <div class="divider"></div>
+        <h1>كليات ومعاهد دبلوم سياحة وفنادق (3 سنوات)</h1>
+
+        <!-- القائمة المحدثة -->
+        <h2>المعاهد والكليات</h2>
+        <ul>
+            <li>السياحة والفنادق تعليم تبادلي حلوان</li>
+            <li>السياحة والفنادق تعليم تبادلي أسكندرية</li>
+            <li>تشغيل المطاعم بنظام التعليم التبادلي جامعة الفيوم</li>
+            <li>العالي دراسات نوعية سياحة وفنادق جيزة</li>
+            <li>جامعة عمالية شعبة الفندقة مدينة نصر</li>
+            <li>العالي سياحة وفنادق 6 أكتوبر</li>
+            <li>العالي النوعية سياحة وفنادق وإرشاد السياحي مصر جديدة</li>
+            <li>الفراعنة العالي سياحة وفنادق بالمريوطية الهرم</li>
+            <li>معهد الألسن العالي شعبة سياحة وفنادق مدينة نصر</li>
+            <li>العالي قاهرة سياحة وفنادق مقطم</li>
+            <li>المصري العالي سياحة وفنادق بمصر الجديدة</li>
+            <li>كلية تكنولوجيا الخدمات الفندقية والسياحية شرق بورسعيد</li>
+            <li>المعهد العالي للسياحة والفنادق بمدينة بدر</li>
+            <li>كلية تكنولوجيا الخدمات الفندقية والسياحية طيبة</li>
+            <li>العالي للسياحة والفنادق وإرشاد السياحي بأبي قير</li>
+            <li>الفني للفنادق المطرية</li>
+            <li>العالي للسياحة والفنادق بالإسكندرية إيجوث</li>
+            <li>العالي سياحة وفنادق الغردقة</li>
+            <li>سيناء عالي سياحة وفنادق رأس سدر</li>
+            <li>ش. مطاعم فني سياحة مطرية</li>
+            <li>الفني للفنادق الإسكندرية</li>
+            <li>الفني للفنادق بورسعيد</li>
+            <li>العالي سياحة وفنادق بالسيوف بالإسكندرية</li>
+            <li>معهد سيناء العالي للدراسات النوعية بمدينة العريش ش. دراسات سياحية وفندقية وإرشاد سياحي (بالمقر البديل بالإسماعيلية)</li>
+            <li>العالي الفندقي بالأقصر إيجوث</li>
+        </ul>
+    </section>
+
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column-left">
+                <div class="footer-image">
+                    <img src="1.jpg" alt="Image" class="footer-img">
+                </div>
+                <h2>البشمبرمج للدبلومات الفنية</h2>
+                <p>هدفنا هو مساعدة طلاب الدبلومات الفنية في التخصصات المختلفة مثل: صناعة، تجارة، زراعة، سياحة وفنادق.</p>
+            </div>
+
+            <div class="footer-column-right">
+                <div class="footer-sections">
+                    <div class="footer-section">
+                        <h3>التخصصات</h3>
+                        <ul>
+                            <li><a href="كليات الصناعة.html">صناعة</a></li>
+                            <li><a href="كليات التجارة .html">تجارة</a></li>
+                            <li><a href="كليات ومعاهد زراعة.html">زراعة</a></li>
+                            <li><a href="كليات سياحة .html">سياحة وفنادق</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3>الكليات والمعاهد</h3>
+                        <ul>
+                            <li><a href="كليات سياحة .html">الكليات الحكومية</a></li>
+                            <li><a href="معادلة زراعة.html">معادلة زراعة </a></li>
+                            <li><a href="https://www.tansik.egypt.gov.eg/application/certificates/fani/defaultfani.aspx">تنسيق </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // إظهار وإخفاء القائمة في الأجهزة الصغيرة
+        const dots = document.getElementById('dots');
+        const navbarLinks = document.getElementById('navbarLinks');
+
+        dots.addEventListener('click', () => {
+            navbarLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>

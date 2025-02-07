@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معهد منشآت بحرية بورسعيد</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="shortcut icon" href="1.jpg" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            padding-top: 60px;
+        }
+
+        /* الناف بار */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #2f3030;
+            z-index: 1000;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .site-name {
+            color: #ecf0f1;
+            font-size: 22px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .navbar-links {
+            display: flex;
+        }
+
+        .navbar-links ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar-links ul li {
+            margin-left: 20px;
+        }
+
+        .navbar-links ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-links ul li a:hover {
+            color: #ffa600;
+        }
+
+        .dots {
+            font-size: 30px;
+            cursor: pointer;
+            color: #ecf0f1;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 20px;
+            }
+
+            .dots {
+                display: block;
+            }
+
+            .navbar-links {
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background-color: #2c3e50;
+                padding: 20px 0;
+                text-align: center;
+            }
+
+            .navbar-links.active {
+                display: block;
+            }
+
+            .navbar-links ul {
+                flex-direction: column;
+                padding: 0;
+            }
+
+            .navbar-links ul li {
+                margin-bottom: 15px;
+            }
+
+            .navbar-links ul li a {
+                font-size: 18px;
+            }
+        }
+
+        /* قسم المعلومات العامة */
+        .info-section {
+            padding: 2em 1em;
+            text-align: right;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .info-section h2 {
+            font-size: 2em;
+            margin-bottom: 1em;
+            color: #333;
+        }
+
+        .info-section p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .info-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-section ul li {
+            margin-bottom: 10px;
+            font-size: 1em;
+            color: #555;
+        }
+
+        .info-section a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .info-section a:hover {
+            color: #0056b3;
+        }
+
+        .info-section .highlight {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .info-section .note {
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 1em;
+            border-radius: 10px;
+            margin-top: 1em;
+        }
+
+        .info-section .note p {
+            margin: 0;
+        }
+
+        /* الفاصل */
+        .separator {
+            width: 100%;
+            height: 2px;
+            background-color: #ccc;
+            margin: 2em 0;
+        }
+
+        /* الفوتر */
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 30px 0;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+
+        .footer-column-left,
+        .footer-column-center,
+        .footer-column-right {
+            flex: 1;
+            padding: 15px;
+            min-width: 250px;
+        }
+
+        .footer-column-left h2,
+        .footer-column-center h3,
+        .footer-column-right h3 {
+            color: #e5e4e2;
+        }
+
+        .footer-column-left p {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .footer-sections {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-section h3 {
+            color: #00bcd4;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            text-decoration: none;
+            color: #f6f7f3;
+            font-size: 1rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: #d4aa00;
+        }
+
+        .social-icon {
+            margin: 10px;
+            color: #ffffff;
+            font-size: 1.5rem;
+        }
+
+        .social-icon:hover {
+            color: #dcca09;
+        }
+
+        .footer-img {
+            width: 50px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- الناف بار -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="1.jpg" alt="Logo" class="logo-image">
+            <span class="site-name">البشمبرمج   </span>
+        </div>
+        <div class="dots" id="dots">&#x2630;</div>
+        <div class="navbar-links" id="navbarLinks">
+            <ul>
+                <li><a href="الريئسة.html">الرئيسية</a></li>
+                <li><a href="كليات الصناعة.html">الكليات المتاحة</a></li>
+                <li><a href="صناعة تخصص.html">التخصصات</a></li>
+                <li><a href="https://www.tansik.egypt.gov.eg/application/certificates/fani/defaultfani.aspx">التنسيق</a></li>
+                <li><a href="من انا.html">اتصل بنا</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- قسم المعلومات العامة -->
+    <section class="info-section">
+        <h2>معهد منشآت بحرية بورسعيد</h2>
+        <p>
+            معهد منشآت بحرية ببورسعيد يعتبر المعهد الوحيد على مستوى جمهورية مصر العربية في هذا التخصص. المعهد يتميز ببيئة دراسة نظيفة وجادة، حيث لا يوجد به كورسات أو ملازم أو مافيا المهندسين كما هو الحال في المعاهد الأخرى. يعتمد المعهد على العمل الجاد من هيئة التدريس واجتهاد الطلاب في المذاكرة.
+        </p>
+
+        <h3>تابعية المعهد</h3>
+        <ul>
+            <li>ينتمي المعهد للكلية التكنولوجية ببورسعيد التابعة لجامعة بورسعيد وليس خاص.</li>
+        </ul>
+
+        <h3>سنوات الدراسة</h3>
+        <ul>
+            <li>الدراسة بالمعهد عبارة عن سنتين.</li>
+            <li>السنة الأولى (شعبة عامة) تنقسم إلى ترمين: الترم الأول يتم دراسة 8 مواد عملية وعلمية، والترم الثاني يتم دراسة 7 مواد عملية وعلمية.</li>
+            <li>السنة الثانية (سنة التخصص) ويوجد بالمعهد 4 شعب:
+                <ul>
+                    <li>تكنولوجيا الملاحة البحرية</li>
+                    <li>تشغيل موانئ</li>
+                    <li>بناء سفن</li>
+                    <li>ميكنة</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>فرص العمل</h3>
+        <ul>
+            <li>فرص العمل تكون حسب احتياج سوق العمل.</li>
+        </ul>
+
+        <h3>مميزات المعهد</h3>
+        <ul>
+            <li>مكان محترم.</li>
+            <li>دراسة بجد.</li>
+            <li>إمكانية استخراج الجواز البحري.</li>
+            <li>خصومات خاصة لطلاب المعهد عند الالتحاق بالأكاديمية العربية للعلوم البحرية.</li>
+            <li>التدريب العملي في شركات تابعة لهيئة قناة السويس.</li>
+            <li>ندوات علمية وعملية بحضور شخصيات مرموقة.</li>
+            <li>سمعة المعهد الطيبة وقيمته المرموقة.</li>
+        </ul>
+
+        <!-- الفاصل -->
+        <div class="separator"></div>
+
+        <!-- المجمعات التكنولوجية المتكاملة -->
+        <h2>المجمعات التكنولوجية المتكاملة (الأميرية – الفيوم – السلام)</h2>
+        <p>
+            تقبل المجمعات التكنولوجية المتكاملة (الأميرية – الفيوم – السلام) من تخصصي (ميكانيكا – كهرباء) فقط. مدة الدراسة بها أربع سنوات على مرحلتين.
+        </p>
+
+        <h3>المرحلة الأولى</h3>
+        <ul>
+            <li>سنتان دراسيتان يحصل بعدها الطالب على شهادة تكنولوجي متخصص في الكهرباء أو الميكانيكا.</li>
+        </ul>
+
+        <h3>المرحلة الثانية</h3>
+        <ul>
+            <li>يتم ترشيح المتميزين للدراسة لمدة سنتين إضافيتين، يحصل بعدها الطالب على بكالوريوس في التكنولوجيا الصناعية.</li>
+        </ul>
+
+        <h3>شروط القبول</h3>
+        <ul>
+            <li>يشترط اجتياز الطالب اختبار القبول الذي يعقد بالمجمع بعد الترشيح في مواد (الرياضيات – الفيزياء – الكيمياء) إذا كانت اللغة إيطالية أو إنجليزية.</li>
+        </ul>
+
+        <!-- الفاصل -->
+        <div class="separator"></div>
+
+        <!-- المعهد الفني لترميم الآثار -->
+        <h2>المعهد الفني لترميم الآثار</h2>
+        <p>
+            المعهد الفني لترميم الآثار يقبل جميع تخصصات الصناعة. مدة الدراسة بالمعهد عامين، ويقع المعهد في الأقصر. بعد الانتهاء من الدراسة، يمكن للطلاب إكمال دراستهم في كلية الآثار.
+        </p>
+
+        <h3>مميزات المعهد</h3>
+        <ul>
+            <li>يقبل جميع تخصصات الصناعة.</li>
+            <li>مدة الدراسة عامين.</li>
+            <li>الموقع: الأقصر.</li>
+            <li>إمكانية إكمال الدراسة في كلية الآثار بعد التخرج.</li>
+        </ul>
+
+        <!-- الفاصل -->
+        <div class="separator"></div>
+
+        <!-- معهد فني لمواد البناء بحلوان -->
+        <h2>معهد فني لمواد البناء بحلوان</h2>
+        <p>
+            معهد فني لمواد البناء بحلوان هو معهد تابع للشركة القومية للأسمنت بحلوان. المعهد يقبل الطلاب الذكور فقط من جميع التخصصات الصناعية.
+        </p>
+
+        <h3>مميزات المعهد</h3>
+        <ul>
+            <li>يقع في محافظة حلوان فقط.</li>
+            <li>مدة الدراسة سنتين، يحصل الطالب بعدها على دبلوم فوق المتوسط.</li>
+            <li>يقبل عدد محدود من الطلاب.</li>
+            <li>يمكن للخريجين إكمال الدراسة في كليات مثل:
+                <ul>
+                    <li>كلية التعليم الصناعي.</li>
+                    <li>كلية التربية.</li>
+                    <li>كلية التربية النوعية.</li>
+                    <li>كلية الهندسة.</li>
+                    <li>كليات التكنولوجيا الجديدة.</li>
+                    <li>المعاهد الخاصة (هندسة، محاسبة، إدارة أعمال، علوم إدارية).</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column-left">
+                <div class="footer-image">
+                    <img src="1.jpg" alt="Image" class="footer-img">
+                </div>
+                <h2>معهد منشآت بحرية بورسعيد</h2>
+                <p>هدفنا هو تقديم معلومات دقيقة وواضحة عن المعهد وفرص الدراسة والعمل المتاحة.</p>
+            </div>
+
+            <div class="footer-column-right">
+                <div class="footer-sections">
+                    <div class="footer-section">
+                        <h3>التخصصات</h3>
+                        <ul>
+                            <li><a href="الريئسة.html">صناعة  </a></li>
+                            <li><a href="كليات التجارة .html">تجارة </a></li>
+                            <li><a href="كليات ومعاهد زراعة.html"> زراعة</a></li>
+                            <li><a href="كليات سياحة .html">سياحة</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3>روابط سريعة</h3>
+                        <ul>
+                            <li><a href="الريئسة.html">الرئيسية</a></li>
+                            <li><a href="كليات الصناعة.html">الكليات المتاحة</a></li>
+                            <li><a href="صناعة تخصص.html">التخصصات</a></li>
+                            <li><a href="https://www.tansik.egypt.gov.eg/application/certificates/fani/defaultfani.aspx">التنسيق</a></li>
+                            <li><a href="معادلة هندسة.html">معادلة </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-column-center">
+                <h3>للتواصل والاستفسار</h3>
+<!--                 <a href="https://www.facebook.com/profile.php?id=100027634399245" target="_blank"
+                    class="social-icon facebook">
+                    <i class="fab fa-facebook-f"></i> -->
+                </a>
+                <!-- <a href="https://www.instagram.com/hosny_abdelati/" target="_blank" class="social-icon instagram">
+                    <i class="fab fa-instagram"></i> -->
+                </a>
+                <a href="https://t.me/ElBashMprogrammer" target="_blank" class="social-icon telegram">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+                <a href="https://whatsapp.com/channel/0029VabyFpsI7BeJIF4OSp0m" target="_blank"
+                    class="social-icon whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="mailto:hosnyandelattiy@gmail.com" class="social-icon email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+        <p>جميع الحقوق محفوظة &copy; 2025 - معهد منشآت بحرية بورسعيد</p>
+    </footer>
+
+    <script>
+        const dots = document.getElementById('dots');
+        const navbarLinks = document.getElementById('navbarLinks');
+
+        dots.addEventListener('click', () => {
+            navbarLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>

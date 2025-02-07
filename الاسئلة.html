@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>الأسئلة الشائعة - البشمبرمج</title>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            color: white;
+            padding-top: 60px;
+        }
+
+        /* تصميم النافبار */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #2f3030;
+            z-index: 1000;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .site-name {
+            color: #ecf0f1;
+            font-size: 22px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .navbar-links {
+            display: flex;
+        }
+
+        .navbar-links ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar-links ul li {
+            margin-left: 20px;
+        }
+
+        .navbar-links ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-links ul li a:hover {
+            color: #ffa600;
+        }
+
+        /* زر القائمة في الموبايل */
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            color: white;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-links {
+                display: none;
+                flex-direction: column;
+                background-color: #2f3030;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            .navbar-links ul {
+                flex-direction: column;
+                padding: 0;
+            }
+
+            .navbar-links ul li {
+                margin: 10px 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .navbar-links.active {
+                display: flex;
+            }
+        }
+
+        /* تصميم قسم الأسئلة */
+        .questions-section {
+            padding: 3em 1em;
+            text-align: center;
+        }
+
+        .questions-section h2 {
+            color: #f39c12;
+            font-size: 2em;
+            margin-bottom: 1em;
+        }
+
+        .questions-container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .question-box {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 1.5em;
+            margin-bottom: 1em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+            text-align: right;
+            position: relative;
+        }
+
+        .question-box:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .question {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #f1c40f;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .answer {
+            font-size: 1.1em;
+            color: #ecf0f1;
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+        }
+
+        .arrow {
+            font-size: 1.5em;
+            transition: transform 0.3s;
+        }
+
+        .question-box.active .arrow {
+            transform: rotate(90deg);
+        }
+
+        /* تصميم الفوتر */
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 2em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">
+            <img src="1.jpg" alt="Logo" class="logo-image">
+            <span class="site-name">البشمبرمج</span>
+        </div>
+
+        <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+
+        <div class="navbar-links">
+            <ul>
+                <li><a href="الريئسة.html">الرئيسية</a></li>
+                <li><a href="الريئسة.html"> التخصصات</a></li>
+                <li><a href="https://www.tansik.egypt.gov.eg/application/certificates/fani/defaultfani.aspx">التنسيق</a></li>
+                <li><a href="النتيجة.htm">النتيجة</a></li>
+                <li><a href="القنوات.html">قنوات</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <section class="questions-section">
+        <h2>الأسئلة الشائعة</h2>
+        <div class="questions-container">
+
+            <div class="question-box" onclick="toggleAnswer(this)">
+                <p class="question">ما الفرق بين التنسيق وتسجيل الرغبات لطلاب الدبلومات الفنية؟ <span class="arrow">&#9654;</span></p>
+                <p class="answer">التنسيق هو الحد الأدنى للقبول، بينما تسجيل الرغبات هو ترتيب الكليات المتاحة إلكترونيًا</p>
+            </div>
+
+            <div class="question-box" onclick="toggleAnswer(this)">
+                <p class="question">ما مدة تسجيل الرغبات للدبلومات الفنية؟ <span class="arrow">&#9654;</span></p>
+                <p class="answer">يبدأ  مع المرحلة الثالثة من تنسيق الثانوي العام ويستمر 8 أيام بعد انتهاء تنسيق الثانوية العامة</p>
+            </div>
+
+            <div class="question-box" onclick="toggleAnswer(this)">
+                <p class="question">ما هي شروط التسجيل في التنسيق؟ <span class="arrow">&#9654;</span></p>
+                <p class="answer">يجب أن يكون الطالب حاصلًا على 60% فأكثر، وإلا فلن يتمكن من التسجيل</p>
+            </div>
+
+            <div class="question-box" onclick="toggleAnswer(this)">
+                <p class="question">ما هي معادلة الدبلوم  ؟ <span class="arrow">&#9654;</span></p>
+                <p class="answer">هي مسابقة بين خريجي الدبلومات والمعاهد للالتحاق بكليات الهندسة والتجارة وغيرها ومتاحة لكل الاقسام بشرط تكون جايب مجموع 75 فما اعلي</p>
+            </div>
+
+            <div class="question-box" onclick="toggleAnswer(this)">
+                <p class="question">   هي نتيجة الدبلوم موعد ظهرها تكون امتي؟ <span class="arrow">&#9654;</span></p>
+                <p class="answer">انت هتخلص امتحانات وبعدين الثانوي العام يبدا امتحانات ويخلص ونتيجة بتاعتك تظهر بس بتستنا فترة لحد ما الثانوي يقدم مرحلة اولي وتناية في التنسيق وبعدين انت بتقدم مع المرحلة التالتة </p>
+            </div>
+            <div class="question-box" onclick="toggleAnswer(this)">
+                <p class="question">ما هي الرغبات؟ <span class="arrow">&#9654;</span></p>
+                <p class="answer">الرغبات دي الكليات والمعاهد الي انت سجلتها امتي بتظهر بعد ما الموقع بيقفل بيومين اوتلاتة تظهر نتيجة الرغبات </p>
+            </div>
+            <div class="question-box" onclick="toggleAnswer(this)">
+                <p class="question">    الدراسة هتكون بدات ونا كدة هقدم متاخر؟ <span class="arrow">&#9654;</span></p>
+                <p class="answer">عادي جدا كل سنة بيكون فية تاخير بالنسبة للمعاهد والكليات اول متظهر بطاقة الترشيح بتاعتك تقدر تدخل بيها اي معهد او اي كلية تحضر محاضرات عادي لحد ماتقدم كل الاوراق والمصاريف </p>
+            </div>
+            <div class="question-box" onclick="toggleAnswer(this)">
+                <p class="question">    نظام الامتحانات بيكون ازاي ؟ <span class="arrow">&#9654;</span></p>
+                <p class="answer">طبعا انت في سنة تالتة يعني شهادة الامتحان بيكون مرة واحدة فقط الي هو اخر سنة مفيش نص ترم والامتحانات طبعا بتكون كلها واحدة علي مستوي الجمهورية يعني كل المحافظات شبة بعض علي سبيل المسال العربي الي في المنوفية هو هو الي في القاهرة هو هو الي في البحيرة وهكذا</p>
+            </div>
+            <div class="question-box" onclick="toggleAnswer(this)">
+                <p class="question">    الفرق بين الخاص والحكومي؟ <span class="arrow">&#9654;</span></p>
+                <p class="answer"> اي معهد هيكون اسمة عندك المعاهد العالي اهو كلمة العالي دي يعني دا معهد عالي اربع سنين او خمسة علي حسب دا معهد اي بيكون خاص ومصاريف اما الحكومي بيكون بمصاريف رمزية مش بيكون مكتوب العالي فية فادا كدة حكومي ممكن كلية اربع سنين او معهد سنتين علي حسب </p>
+            </div>
+            <div class="question-box" onclick="toggleAnswer(this)">
+                <p class="question">    هل كل الطلاب ليهم كليات ؟ <span class="arrow">&#9654;</span></p>
+                <p class="answer">ايوة طبعا ليك كليات ومعاهد وكل الاقسام طبعا ممكن نلاقي معهد زي فني صحي دا مش بيقبل غير من كهرباء والكترونيات وبصريات هتلاقي معاهد وكليات كدة بس معظم كليلات ومعاهد تقبل جميع الاقسام بشرط تكون جايب مجموعها </p>
+            </div>
+            <div class="question-box" onclick="toggleAnswer(this)">
+                <p class="question">    عوزك تكون عندك صبر ؟ <span class="arrow">&#9654;</span></p>
+                <p class="answer">لية بقولك كدة لانك هتخلص امتحانات وهتستنا فترة لحد ما النتيجة تظهر ولحد ما تنسيق وتسجل رغبات ينزل دا طبعي بتاع كل سنة هتلاقي الثانوي مخلص بعدك ونتيجة ظهرت قبلك وسجل رغبات وانت لسة دا الي بيحصل كل سنة بس في الاول وفي الاخر كلة بيسجل رغبات وبيخش كلية او معهد فا مش تقلق من التاخير</p>
+            </div>
+            <div class="question-box" onclick="toggleAnswer(this)">
+                <p class="question">    هل في كليات تحتاج اقسام معينة من الدبلومات؟ <span class="arrow">&#9654;</span></p>
+                <p class="answer">نعم ونا مواضح دة في شرح كليات والمعاهد تقدر ترجع ليهم تشوفهم </p>
+            </div>
+            <div class="question-box" onclick="toggleAnswer(this)">
+                <p class="question">   النتيجة بتظهر الاول ام التنسيق؟ <span class="arrow">&#9654;</span></p>
+                <p class="answer">النتيجة هي الي بتظهر الاول وبعدين الرغبات بتنزل او تفتح وانت تبدا تخش وتسجل وتكتب الرغبات الكتروني  والازم تنكتب بعناية لان الغلطة فيها بضيع وبعد متكتب 75 رغبة تستني بقي نتيجة الرغبات دي او بطاقة الترشيح الي جاتلك او  كلية او المعهد الي جالك في الوقت دا التنسيق بينزل</p>
+            </div>
+            <div class="question-box" onclick="toggleAnswer(this)">
+                <p class="question">    طب انا بكتب الرغبات بناءا علي اية؟ <span class="arrow">&#9654;</span></p>
+                <p class="answer">طبعا انت بتكتب 75 رغبة دول بكتبهم علي اساس مجموعك وبتشوف تنسيق السنة الي فاتت لان تنسيق السنة بتاعتك مش بينزل غير بعد ما بتسجل فا انت بتشوف تنسيق العام الي فاات لان بيكون التنسيق  بتاع السنة الجديدة قريب منة ليزيد واحد او اتنين في المية ليقل فا انت بتجل علي اساسس تنسيق السنة الي قبلك</p>
+            </div>
+            <div class="question-box" onclick="toggleAnswer(this)">
+                <p class="question">    سجلت ومعايا بطاقة الترشيح اي بعد كدة؟ <span class="arrow">&#9654;</span></p>
+                <p class="answer">بعد كدة بطاقة ترشيح الي جاتلك دي  الي هتقدم فيها في كلية او المعهد الي جالك ودي ورقة مهمة جدا تحافظ عليها وبعد كدة انت بتابع الكلية او المعهد الي جالك عشان تعرف اي الاوراق ومصاريف ومعاد التقديم</p>
+            </div>
+            <div class="question-box" onclick="toggleAnswer(this)">
+                <p class="question">    في معهد زي تمريض واكاديمة هل دا معتمد؟ <span class="arrow">&#9654;</span></p>
+                <p class="answer">لا طبعا مش معتمد دي حاجة مش ليها لازمة حاجة نصب كدة طالما مش موجودة في التنسيق يبقي مش معتمد</p>
+            </div>
+            <div class="question-box" onclick="toggleAnswer(this)">
+                <p class="question">    الفرق بين المعتمد والي مش معتمد؟ <span class="arrow">&#9654;</span></p>
+                <p class="answer">بص اولا كدة كل المعاهد وكليات الي موجودة في التنسيق عندك دي كلها معتمدة من الوزرة ...طب الي مش معتمد دا الي مش موجود في التنسيق يعني هتلاقسي حاجات بتكلمك تقولك دا حنا معهد تمريض دا حنا مساحة وبنقبل من 50 في المية بص دا نصب وحاجات مش ليها لازمة ومش معتمدة من الوزارة عشان مش موجود في التنسيق فا خالي بالك</p>
+            </div>
+            <div class="question-box" onclick="toggleAnswer(this)">
+                <p class="question">    طب ما كلية تكنولوجيا العسكرية مش في التنسيق هل كدة معتمدة ؟ <span class="arrow">&#9654;</span></p>
+                <p class="answer">ايوة طبعا معتمدة ومن وزارة الداخلية وتقدر ترجع لشرح كلية موجود في الموقع في شرح كليات الصنايع</p>
+            </div>
+            <div class="question-box" onclick="toggleAnswer(this)">
+                <p class="question">    التنسيق السنة الي فاتت كان عالي هل ممكن ينزل السنادي؟ <span class="arrow">&#9654;</span></p>
+                <p class="answer">طبعا كل سنة وليها ظروفها وعلي حسب الاقبال علي كلية او المعهد فا انت ممكن تلاقي كلية السنة الي فاتت اخدت مجموع واطي ممكن تعالي السنادي دا لية عشان طبعا بسببب الاقيبال علي الكلية دي وهكضا بقي وكل سنة علي حسب</p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>جميع الحقوق محفوظة &copy; 2025 - موقع البشمبرمج</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.navbar-links').classList.toggle('active');
+        }
+
+        function toggleAnswer(element) {
+            const answer = element.querySelector(".answer");
+            const arrow = element.querySelector(".arrow");
+            
+            if (answer.style.display === "block") {
+                answer.style.display = "none";
+                arrow.style.transform = "rotate(0deg)";
+            } else {
+                answer.style.display = "block";
+                arrow.style.transform = "rotate(90deg)";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
+
